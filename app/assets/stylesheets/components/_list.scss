@@ -1,0 +1,42 @@
+
+
+.list {
+
+  box-shadow: 6px 6px 14px #FAB0BE;
+  border-radius: 8px;
+
+
+  a {
+    color: #55ae95;
+    &:hover {
+      color: #326b5b;
+    }
+  }
+
+  li:first-child {
+    border-radius: 8px 8px 0px 0px;
+  }
+
+  li:last-child {
+    border-radius: 0px 0px 8px 8px;
+  }
+
+  li {
+    color: #3f4d71;
+    font-size: 12px;
+  }
+
+  .dose {
+    width: 110px;
+  }
+
+  .trash {
+    width: 15px;
+  }
+  .ingredient {
+    width: 100%;
+  }
+
+}
+
+

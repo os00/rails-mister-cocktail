@@ -18,10 +18,33 @@ h3, h4, h5, h6, a {
   letter-spacing: 1px;
 }
 
-.dose {
-  width: 50px;
-}
+// .dose {
+//   width: 110px;
+// }
+
+// .trash {
+//   width: 15px;
+// }
+// .ingredient {
+//   width: 100%;
+// }
 
 .row {
   padding: 10px 0px;
+}
+
+.cocktail-img-show {
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 6px 6px 14px #FAB0BE;
+
+  img {
+    border-radius: 8px;
+    width: 100%;
+  }
+}
+
+.text {
+  color: #3f4d71;
+  font-size: 14px
 }

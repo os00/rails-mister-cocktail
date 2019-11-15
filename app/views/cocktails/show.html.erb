@@ -1,57 +1,86 @@
 <div class="container">
   <div class="row">
-    <div class="col-5">
+    <div class="col-11 d-flex justify-content-between">
       <h2><%= @cocktail.name %></h2>
+      <%= link_to "Back to list", cocktails_path, class: "button" %>
     </div>
   </div>
   <br>
   <div class="row">
-    <div class="col-5">
-      <h5>Ingredients:</h5>
+
+    <div class="col-5 pl-3 pr-3">
+      <div class="cocktail-img-show">
+      <%= image_tag @cocktail.photo.url %>
+      </div>
+      <div>
+        <h5>How to make the cocktail:</h5>
+      </div>
+      <div class="text">
+        <p><%= @cocktail.procedure %></p>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-5">
-      <ul  class="list-group">
-        <% @cocktail.doses.each do |dose| %>
-          <li class="list-group-item">
-            <div class="d-flex justify-content-between">
+
+    <div class="col-6 pl-3 pr-3">
+
+      <div>
+        <h5 class="mb-3">Ingredients:</h5>
+      </div>
+
+      <div class="mb-3 mt-3">
+        <ul class="list-group list">
+          <% @cocktail.doses.each do |dose| %>
+            <li class="list-group-item">
               <div class="d-flex justify-content-between">
-                <div class="dose">
-                  <%= "#{dose.description}" %>
+                <div class="d-flex">
+                  <div class="dose mr-3">
+                    <%= "#{dose.description}" %>
+                  </div>
+                  <div class="flex-fill">
+                    <%= "#{dose.ingredient.name}" %>
+                  </div>
                 </div>
-                <div>
-                  <%= "#{dose.ingredient.name}" %>
+                <div class="trash">
+                  <%= link_to cocktail_dose_path(@cocktail, dose), method: :delete do %>
+                    <i class="far fa-trash-alt"></i>
+                  <% end %>
                 </div>
               </div>
-              <div>
-                <%= link_to cocktail_dose_path(@cocktail, dose), method: :delete do %>
-                  <i class="far fa-trash-alt"></i>
-                <% end %>
-              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+        <div class="mb-3 mt-3">
+          <h5>Add ingredient to this cocktail:</h5>
+        </div>
+        <div class="mb-3 mt-3">
+          <%= simple_form_for([@cocktail, @dose]) do |f| %>
+            <div class="form-group text">
+              <%= f.association :ingredient, label: "Choose an ingredient:", collection: Ingredient.all.order(:name).reject { |ingredient| @cocktail.ingredients.include?(ingredient) } %>
             </div>
-          </li>
-        <% end %>
-      </ul>
+            <div class="form-group text">
+              <%= f.input :description, label: "Enter an amount:" %>
+            </div>
+            <%= f.button :submit, "Add", class: 'button' %>
+          <% end %>
+        </div>
+
     </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
   <br>
-  <div class="row">
-    <div class="col-5">
-      <h5>Add ingredient to this cocktail:</h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-5">
-      <%= simple_form_for([@cocktail, @dose]) do |f| %>
-        <div class="form-group">
-          <%= f.association :ingredient, label: "Choose an ingredient:", collection: Ingredient.all.order(:name).reject { |ingredient| @cocktail.ingredients.include?(ingredient) } %>
-        </div>
-        <div class="form-group">
-          <%= f.input :description, label: "Enter an amount:" %>
-        </div>
-        <%= f.button :submit, "Add", class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-  </div>
+
 </div>
