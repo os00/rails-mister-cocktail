@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5">
+      <h2><%= @cocktail.name %></h2>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-5">
+      <h5>Ingredients:</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5">
+      <ul  class="list-group">
+        <% @cocktail.doses.each do |dose| %>
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-between">
+                <div class="dose">
+                  <%= "#{dose.description}" %>
+                </div>
+                <div>
+                  <%= "#{dose.ingredient.name}" %>
+                </div>
+              </div>
+              <div>
+                <%= link_to cocktail_dose_path(@cocktail, dose), method: :delete do %>
+                  <i class="far fa-trash-alt"></i>
+                <% end %>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-5">
+      <h5>Add ingredient to this cocktail:</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5">
+      <%= simple_form_for([@cocktail, @dose]) do |f| %>
+        <div class="form-group">
+          <%= f.association :ingredient, label: "Choose an ingredient:", collection: Ingredient.all.order(:name).reject { |ingredient| @cocktail.ingredients.include?(ingredient) } %>
+        </div>
+        <div class="form-group">
+          <%= f.input :description, label: "Enter an amount:" %>
+        </div>
+        <%= f.button :submit, "Add", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

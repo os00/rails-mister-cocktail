@@ -1,0 +1,18 @@
+.button {
+  font-size: 20px;
+  color: white;
+  background-color: #FD7792;
+  display: inline;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 4px 4px 7px #FAB0BE;
+
+  &:hover {
+    position: relative;
+    left: 3px;
+    top: 3px;
+    box-shadow: 1px 1px 7px #FAB0BE;
+    text-decoration: none;
+    color: white;
+  }
+}

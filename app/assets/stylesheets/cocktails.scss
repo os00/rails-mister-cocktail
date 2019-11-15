@@ -1,0 +1,27 @@
+// Place all the styles related to the Cocktails controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background-color: #ffe5ea;
+}
+
+h1, h2 {
+  font-family: 'Monoton', cursive;
+  color: #3f4d71;
+  letter-spacing: 3px;
+  text-shadow: 4px 4px 7px #6481c9;
+  margin: 5px 0px;
+}
+
+h3, h4, h5, h6, a {
+  font-family: 'Lobster', cursive;
+  letter-spacing: 1px;
+}
+
+.dose {
+  width: 50px;
+}
+
+.row {
+  padding: 10px 0px;
+}
