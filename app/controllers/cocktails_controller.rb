@@ -7,9 +7,10 @@ class CocktailsController < ApplicationController
   def show
     @cocktail = Cocktail.find(params[:id])
     @dose = Dose.new
+    @review = Review.new
 
-    @ingredients = Ingredient.all.order(:name)
-    @ingredients = @ingredients.reject { |ingredient| @cocktail.ingredients.include?(ingredient) }
+    # @ingredients = Ingredient.all.order(:name)
+    # @ingredients = @ingredients.reject { |ingredient| @cocktail.ingredients.include?(ingredient) }
   end
 
   def new

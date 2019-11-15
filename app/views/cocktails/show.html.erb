@@ -18,6 +18,7 @@
       <div class="text">
         <p><%= @cocktail.procedure %></p>
       </div>
+
     </div>
 
     <div class="col-6 pl-3 pr-3">
@@ -68,15 +69,62 @@
     </div>
 
   </div>
+  <hr>
+  <div class="row">
 
+    <div class="col-5">
+      <div>
+        <h5>Reviews:</h5>
+      </div>
+      <div class="text">
+        <ul class="list-group list">
+          <% @cocktail.reviews.each  do |review| %>
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between mb-2">
+                <span><strong>User: </strong><%=review.name%></span>
+                <span>
+                  <strong>Rating: </strong>
+                  <% if review.rating.zero? %>
+                    <i class="fas fa-skull-crossbones"></i>
+                  <% else %>
+                    <% review.rating.times do %>
+                      <i class="fas fa-star"></i>
+                    <% end %>
+                  <% end %>
+                </span>
+              </div>
+              <div>
+                <%=review.content%>
+              </div>
+            </li>
+          <% end %>
+        </ul>
 
+      </div>
+    </div>
+    <div class="col-6 pl-3 pr-3">
+      <div>
+          <h5>Add review to this cocktail:</h5>
+        </div>
+        <div class="mb-3 mt-3">
+          <%= simple_form_for([@cocktail, @review]) do |f| %>
+            <div class="d-flex">
+              <div class="form-group text review-name mr-2 mb-0">
+                <%= f.input :name %>
+              </div>
+              <div class="form-group text review-rating mb-0">
+                <%= f.input :rating, collection: [0,1,2,3,4,5] %>
+              </div>
+            </div>
+            <div class="form-group text">
+              <%= f.input :content %>
+            </div>
+            <%= f.button :submit, "Add", class: 'button' %>
+          <% end %>
+        </div>
+      </div>
 
-
-
-
-
-
-
+  </div>
 
 
 
