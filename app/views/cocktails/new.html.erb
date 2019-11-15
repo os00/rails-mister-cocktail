@@ -1,15 +1,21 @@
 <div class="container">
   <div class="row">
-    <div class="col-5">
+    <div class="col-11 d-flex justify-content-between">
       <h2>Create new cocktail</h2>
+      <%= link_to "Back to list", cocktails_path, class: "button" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-5 pl-3 pr-3">
+
       <%= simple_form_for(@cocktail) do |f| %>
-        <div class="form-group">
+        <div class="form-group text">
           <%= f.input :name %>
           <%= f.input :photo %>
           <%= f.input :photo_cache, as: :hidden %>
           <%= f.input :procedure %>
         </div>
-        <%= f.submit class: 'btn btn-primary' %>
+        <%= f.submit class: 'button' %>
       <% end %>
     </div>
   </div>
